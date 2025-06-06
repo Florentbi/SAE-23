@@ -1,0 +1,482 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3cc11d24.ff01a2",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "WARNING: please check you have started this container with a volume that is mounted to /data\\n otherwise any flow changes are lost when you redeploy or upgrade the container\\n (e.g. upgrade to a more recent node-red docker image).\\n  If you are using named volumes you can ignore this warning.\\n Double click or see info side panel to learn how to start Node-RED in Docker to save your work",
+        "info": "\nTo start docker with a bind mount volume (-v option), for example:\n\n```\ndocker run -it -p 1880:1880 -v /home/user/node_red_data:/data --name mynodered nodered/node-red\n```\n\nwhere `/home/user/node_red_data` is a directory on your host machine where you want to store your flows.\n\nIf you do not do this then you can experiment and redploy flows, but if you restart or upgrade the container the flows will be disconnected and lost. \n\nThey will still exist in a hidden data volume, which can be recovered using standard docker techniques, but that is much more complex than just starting with a named volume as described above.",
+        "x": 350,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1a01a945747f315a",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "E208",
+        "topic": "iut/bate/etage2/E208/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "9d53dfcddc30ee8e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 220,
+        "wires": [
+            [
+                "887179e41f3a255a",
+                "63dba58ab00ce3af"
+            ]
+        ]
+    },
+    {
+        "id": "887179e41f3a255a",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "temp",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ed146e7429d8ca8a",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "E208",
+        "group": "da846797a8be3a36",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température E208",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "052191a5aa3abed0",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "E207",
+        "topic": "iut/bate/etage2/E207/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "9d53dfcddc30ee8e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "4c649a6c13817d02"
+            ]
+        ]
+    },
+    {
+        "id": "dad68052011ee231",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "E101",
+        "topic": "iut/bate/etage1/E101/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "9d53dfcddc30ee8e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 520,
+        "wires": [
+            [
+                "9017cfdcbf5da0e5"
+            ]
+        ]
+    },
+    {
+        "id": "c9c3ddf9247c228f",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "E102",
+        "topic": "iut/bate/etage1/E102/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "9d53dfcddc30ee8e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 640,
+        "wires": [
+            [
+                "496ca85057b65dd4"
+            ]
+        ]
+    },
+    {
+        "id": "d5edafcae2f91a15",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "E207",
+        "group": "da846797a8be3a36",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température E207",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "21951a5c359a6499",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "E101",
+        "group": "da846797a8be3a36",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température E101",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c03a79bcba32cbfb",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "E102",
+        "group": "da846797a8be3a36",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température E102",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "4c649a6c13817d02",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 400,
+        "wires": [
+            [
+                "d5edafcae2f91a15",
+                "f3386ce0e97c5ab2"
+            ]
+        ]
+    },
+    {
+        "id": "63dba58ab00ce3af",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 280,
+        "wires": [
+            [
+                "ed146e7429d8ca8a",
+                "bd8f86f56f055ddb"
+            ]
+        ]
+    },
+    {
+        "id": "9017cfdcbf5da0e5",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 520,
+        "wires": [
+            [
+                "21951a5c359a6499",
+                "707d20175662bfe7"
+            ]
+        ]
+    },
+    {
+        "id": "496ca85057b65dd4",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 640,
+        "wires": [
+            [
+                "c03a79bcba32cbfb",
+                "f2d038f84b197c69"
+            ]
+        ]
+    },
+    {
+        "id": "bd8f86f56f055ddb",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "6084b126644509c0",
+        "name": "capteurs/E208",
+        "measurement": "temperature,building=RT,room=E208",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 840,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f3386ce0e97c5ab2",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "6084b126644509c0",
+        "name": "capteurs/E207",
+        "measurement": "temperature,building=RT,room=E207",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 840,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "707d20175662bfe7",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "6084b126644509c0",
+        "name": "capteurs/E101",
+        "measurement": "temperature,building=RT,room=E101",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 840,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f2d038f84b197c69",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "6084b126644509c0",
+        "name": "capteurs/E102",
+        "measurement": "temperature,building=RT,room=E102",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 840,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "9d53dfcddc30ee8e",
+        "type": "mqtt-broker",
+        "name": "MQTT iut",
+        "broker": "iot.iut-blagnac.fr",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "da846797a8be3a36",
+        "type": "ui_group",
+        "name": "Capteurs Température",
+        "tab": "2526cf2dd1cd363b",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6084b126644509c0",
+        "type": "influxdb",
+        "hostname": "192.168.101.166",
+        "port": 8086,
+        "protocol": "http",
+        "database": "capteurs",
+        "name": "DB capteurs",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "2526cf2dd1cd363b",
+        "type": "ui_tab",
+        "name": "Bâtiment RT",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
